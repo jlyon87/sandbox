@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>countdown</title>
+</head>
+<body>
+
+  <div >
+    <button id="start" type="button" name="button">Start</button>
+    <button id="stop" type="button" name="button">Stop</button>
+  </div>
+
+  <div id="timer"></div>
+
+  <div >
+    <span id="minutes"></span>:
+    <span id="seconds"></span>
+  </div>
+
+  <script type="text/javascript">
+    var timer = document.getElementById("timer");
+    var minutes = document.getElementById("minutes");
+    var seconds = document.getElementById("seconds");
+    var fiveMinutes_ms = 1000 * 60 * 5;
+    var clock;
+
+    var endCountdown = function() {
+      clearInterval(clock)
+    };
+
+    var countdown = function() {
+      var expiresOn = new Date(Date.now() + fiveMinutes_ms);
+      clock = setInterval(function() {
+        var difference = new Date(expiresOn - Date.now());
+        timer.textContent = difference.getTime();
+        minutes.textContent = difference.getMinutes();
+        seconds.textContent = difference.getSeconds();
+
+        if(difference.getTime() <= 0) {
+          endCountdown();
+        }
+      }, 20);
+    };
+
+    document.getElementById("start")
+      .addEventListener("click", countdown);
+
+    document.getElementById("stop")
+      .addEventListener("click", endCountdown);
+
+  </script>
+</body>
+</html>

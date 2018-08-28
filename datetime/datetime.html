@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <div>w/o 1364832386000</div>
+        <div>w/  1364846786000</div>
+        <div>
+          <label for="epochTimeInput">Epoch Time</label>
+        </div>
+        <input id="epochTimeInput" type="number" value="1364846786000">
+        <button id="btn" type="button" name="button">Do</button>
+      </div>
+      <div>Eastern: <span id="eastern"></span></div>
+      <div>GMT+0: <span id="gmt"></span></div>
+    </div>
+    <script type="text/javascript" src="js/datetime-formatter.js"></script>
+    <script type="text/javascript">
+
+      var convertEpochTime = function(event) {
+        var input = new Number(document.getElementById('epochTimeInput').value);
+        var easternTime = acumen.DateTimeFormatter.enUSDateTimeFormat(input);
+        var gmtTime = acumen.DateTimeFormatter.enGMTZeroDateTimeFormat(input);
+
+        var eSpan = document.getElementById('eastern');
+        var gSpan = document.getElementById('gmt');
+        eSpan.textContent = easternTime;
+        gSpan.textContent = gmtTime;
+      };
+
+      var btn = document.getElementById('btn');
+      btn.addEventListener('click', convertEpochTime);
+    </script>
+  </body>
+</html>

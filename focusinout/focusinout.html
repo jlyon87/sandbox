@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Demo Focus In and Focus Out</title>
+
+    <style media="screen">
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="input-container">
+      <input type="text" name="" value="">
+      <div class="hidden helper-text" >
+        Hi o/
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="" value="">
+      <div class="hidden helper-text" >
+        Hi o/
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input type="text" name="" value="">
+      <div class="hidden helper-text" >
+        Hi o/
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    var containers = document.querySelectorAll(".input-container");
+
+    var handleFocusIn = function(e) {
+      console.log("focusin", e);
+      var input = e.target;
+      var helperText = input.nextElementSibling;
+      console.log("helperText", helperText);
+      helperText.classList.remove("hidden");
+    };
+
+    var handleFocusOut = function(e) {
+      console.log("focusout", e);
+      var input = e.target;
+      var helperText = input.nextElementSibling;
+      console.log("helperText", helperText);
+      helperText.classList.add("hidden");
+    };
+
+    containers.forEach(function(div) {
+      div.addEventListener("focusin", handleFocusIn);
+      div.addEventListener("focusout", handleFocusOut);
+    });
+  </script>
+</html>
